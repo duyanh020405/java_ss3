@@ -30,10 +30,16 @@ public class bt4 {
                 case 7:
                     System.out.println("Thu 7");
                     break;
+                default:
+                    System.out.println("Số không hợ lệ");
+                    break;
             }
+
         }
         else {
             System.out.println("Nhap khong hop le , vui long thu lai");
         }
+
     }
+
 }

@@ -1,11 +1,10 @@
 package ss3;
-
 import java.util.Scanner;
 
 public class bt9 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Nhập vào một số hợp lệ (100-999): ");
+        System.out.print("Nhập vào một số (100-999): ");
         int number = scanner.nextInt();
 
         if (number < 100 || number > 999) {
@@ -15,78 +14,66 @@ public class bt9 {
             int tens = (number % 100) / 10;
             int units = number % 10;
 
-            System.out.print(convertHundreds(hundreds));
-            if (tens == 0 && units == 0) {
-                System.out.println("");
-            } else {
-                System.out.print(" " + convertTens(tens, units));
-            }
+            System.out.println(convertToWords(hundreds, tens, units));
         }
+
         scanner.close();
     }
 
-    public static String convertHundreds(int num) {
-        switch (num) {
-            case 1: return "Một trăm";
-            case 2: return "Hai trăm";
-            case 3: return "Ba trăm";
-            case 4: return "Bốn trăm";
-            case 5: return "Năm trăm";
-            case 6: return "Sáu trăm";
-            case 7: return "Bảy trăm";
-            case 8: return "Tám trăm";
-            case 9: return "Chín trăm";
-            default: return "";
-        }
-    }
+    public static String convertToWords(int hundreds, int tens, int units) {
+        String words = "";
+        words += getWord(hundreds) + " trăm ";
 
-    public static String convertTens(int tens, int units) {
-        if (tens == 0) {
-            return convertUnits(units);
+        if (tens == 0 && units != 0) {
+            words += "lẻ " + getWord(units);
         } else if (tens == 1) {
-            switch (units) {
-                case 0: return "mười";
-                case 1: return "mười một";
-                case 2: return "mười hai";
-                case 3: return "mười ba";
-                case 4: return "mười bốn";
-                case 5: return "mười lăm";
-                case 6: return "mười sáu";
-                case 7: return "mười bảy";
-                case 8: return "mười tám";
-                case 9: return "mười chín";
-                default: return "";
-            }
+            words += getTeenWord(units);
         } else {
-            String tensWord = "";
-            switch (tens) {
-                case 2: tensWord = "hai mươi"; break;
-                case 3: tensWord = "ba mươi"; break;
-                case 4: tensWord = "bốn mươi"; break;
-                case 5: tensWord = "năm mươi"; break;
-                case 6: tensWord = "sáu mươi"; break;
-                case 7: tensWord = "bảy mươi"; break;
-                case 8: tensWord = "tám mươi"; break;
-                case 9: tensWord = "chín mươi"; break;
+            words += getTensWord(tens);
+            if (units != 0) {
+                words += (units == 5) ? " lăm" : " " + getWord(units);
             }
-
-            if (units == 0) return tensWord;
-            else return tensWord + " " + convertUnits(units);
         }
+
+        return words.trim();
     }
 
-    public static String convertUnits(int num) {
-        switch (num) {
-            case 1: return "một";
-            case 2: return "hai";
-            case 3: return "ba";
-            case 4: return "bốn";
-            case 5: return "năm";
-            case 6: return "sáu";
-            case 7: return "bảy";
-            case 8: return "tám";
-            case 9: return "chín";
-            default: return "";
-        }
+    public static String getWord(int num) {
+        if (num == 1) return "Một";
+        if (num == 2) return "Hai";
+        if (num == 3) return "Ba";
+        if (num == 4) return "Bốn";
+        if (num == 5) return "Năm";
+        if (num == 6) return "Sáu";
+        if (num == 7) return "Bảy";
+        if (num == 8) return "Tám";
+        if (num == 9) return "Chín";
+        return "";
+    }
+
+    public static String getTeenWord(int num) {
+        if (num == 0) return "Mười";
+        if (num == 1) return "Mười một";
+        if (num == 2) return "Mười hai";
+        if (num == 3) return "Mười ba";
+        if (num == 4) return "Mười bốn";
+        if (num == 5) return "Mười lăm";
+        if (num == 6) return "Mười sáu";
+        if (num == 7) return "Mười bảy";
+        if (num == 8) return "Mười tám";
+        if (num == 9) return "Mười chín";
+        return "";
+    }
+
+    public static String getTensWord(int num) {
+        if (num == 2) return "Hai mươi";
+        if (num == 3) return "Ba mươi";
+        if (num == 4) return "Bốn mươi";
+        if (num == 5) return "Năm mươi";
+        if (num == 6) return "Sáu mươi";
+        if (num == 7) return "Bảy mươi";
+        if (num == 8) return "Tám mươi";
+        if (num == 9) return "Chín mươi";
+        return "";
     }
 }

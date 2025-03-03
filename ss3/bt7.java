@@ -5,31 +5,25 @@ import java.util.Scanner;
 public class bt7 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Nhập 3 cạnh tam giác để tính toán:");
-        double canh1 = scanner.nextDouble();
-        double canh2 = scanner.nextDouble();
-        double canh3 = scanner.nextDouble();
+        System.out.println("Enter the three sides of the triangle:");
+        double side1 = scanner.nextDouble();
+        double side2 = scanner.nextDouble();
+        double side3 = scanner.nextDouble();
 
-        if (canh1 + canh2 > canh3 && canh1 + canh3 > canh2 && canh2 + canh3 > canh1) {
-            double chuVi = canh1 + canh2 + canh3;
-            System.out.println("Chu vi: " + chuVi);
-            double p = chuVi / 2;
-            double dienTich = Math.sqrt(p * (p - canh1) * (p - canh2) * (p - canh3));
-            System.out.println("Diện tích: " + dienTich);
-
-            if (canh1 == canh2 && canh2 == canh3) {
-                System.out.println("Tam giác đều");
-            } else if (canh1 == canh2 || canh2 == canh3 || canh1 == canh3) {
-                System.out.println("Tam giác cân");
-            } else if (Math.pow(canh1, 2) + Math.pow(canh2, 2) == Math.pow(canh3, 2) ||
-                    Math.pow(canh1, 2) + Math.pow(canh3, 2) == Math.pow(canh2, 2) ||
-                    Math.pow(canh2, 2) + Math.pow(canh3, 2) == Math.pow(canh1, 2)) {
-                System.out.println("Tam giác vuông");
+        if (side1 + side2 > side3 && side1 + side3 > side2 && side2 + side3 > side1) {
+            if (side1 == side2 && side2 == side3) {
+                System.out.println("Equilateral Triangle");
+            } else if (side1 == side2 || side2 == side3 || side1 == side3) {
+                System.out.println("Isosceles Triangle");
+            } else if (Math.pow(side1, 2) + Math.pow(side2, 2) == Math.pow(side3, 2) ||
+                    Math.pow(side1, 2) + Math.pow(side3, 2) == Math.pow(side2, 2) ||
+                    Math.pow(side2, 2) + Math.pow(side3, 2) == Math.pow(side1, 2)) {
+                System.out.println("Right Triangle");
             } else {
-                System.out.println("Tam giác thường");
+                System.out.println("Scalene Triangle");
             }
         } else {
-            System.out.println("Không thể tạo ra tam giác, vui lòng nhập lại.");
+            System.out.println("Invalid triangle, please enter valid sides.");
         }
 
         scanner.close();
